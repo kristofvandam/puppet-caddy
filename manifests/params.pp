@@ -21,8 +21,8 @@ class caddy::params {
       $caddy_group      = 'caddy'
       $caddy_log_dir    = '/var/log/caddy'
       $caddy_tmp_dir    = '/tmp'
-      $caddy_http_port  = 80,
-      $caddy_https_port = 443,
+      $caddy_http_port  = 80
+      $caddy_https_port = 443
     }
 
     default:  {
