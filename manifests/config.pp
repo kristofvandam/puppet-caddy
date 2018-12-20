@@ -61,7 +61,7 @@ class caddy::config inherits caddy {
         owner   => 'root',
         group   => 'root',
         content => template('caddy/etc/systemd/system/caddy.service.erb'),
-        notify  => Class['caddy::service'],
+        notify  => Service['caddy'],
         require => Class['caddy::package'],
       }
     }
@@ -72,6 +72,7 @@ class caddy::config inherits caddy {
         owner   => 'root',
         group   => 'root',
         content => template('caddy/etc/init.d/caddy.erb'),
+        notify  => Service['caddy'],
         require => Class['caddy::package'],
       }
     }
