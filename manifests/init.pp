@@ -33,6 +33,7 @@ class caddy (
   String                         $caddy_group      = $caddy::params::caddy_group,
   String                         $caddy_log_dir    = $caddy::params::caddy_log_dir,
   String                         $caddy_tmp_dir    = $caddy::params::caddy_tmp_dir,
+  String                         $caddy_ssl_dir    = $caddy::params::caddy_ssl_dir,
   String                         $caddy_home       = $caddy::params::caddy_home,
   Enum['personal', 'commercial'] $caddy_license    = 'personal',
   Enum['on','off']               $caddy_telemetry  = 'off',

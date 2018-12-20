@@ -9,7 +9,8 @@ Wants=network-online.target systemd-networkd-wait-online.service
 User=<%= @caddy_user %>
 Group=<%= @caddy_group %>
 
-Environment=HOME=/etc/ssl/caddy
+Environment=HOME=<%= @caddy_home %>
+Environment=CADDYPATH=<%= @caddy_ssl_dir %>
 
 ExecStart=<%= @install_path %>/caddy -log <%= @caddy_log_dir %>/caddy.log -agree=true -conf=/etc/caddy/Caddyfile -root=/var/tmp -http-port=<%= @caddy_http_port %> -https-port=<%= @caddy_https_port %>
 ExecReload=/bin/kill -USR1 $MAINPID
