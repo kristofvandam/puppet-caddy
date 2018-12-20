@@ -16,13 +16,13 @@ ExecStart=<%= @install_path %>/caddy -log <%= @caddy_log_dir %>/caddy.log -agree
 ExecReload=/bin/kill -USR1 $MAINPID
 
 LimitNOFILE=1048576
-LimitNPROC=64
+LimitNPROC=512
 
 PrivateTmp=true
-PrivateDevices=true
+PrivateDevices=false
 ProtectHome=true
 ProtectSystem=full
-ReadWriteDirectories=/etc/ssl/caddy
+ReadWriteDirectories=<%= @caddy_home %>
 
 [Install]
 WantedBy=multi-user.target
