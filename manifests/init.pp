@@ -36,10 +36,11 @@ class caddy (
   String                         $caddy_home       = $caddy::params::caddy_home,
   Enum['personal', 'commercial'] $caddy_license    = 'personal',
   Enum['on','off']               $caddy_telemetry  = 'off',
-  String                         $caddy_features   = 'http.filter,http.git,http.ipfilter'
+  String                         $caddy_features   = 'http.filter,http.git,http.ipfilter',
   Integer                        $caddy_http_port  = $caddy::params::caddy_http_port,
   Integer                        $caddy_https_port = $caddy::params::caddy_https_port,
-  )inherits caddy::params{
+
+  ) inherits caddy::params {
 
   include ::caddy::package
   include ::caddy::config
