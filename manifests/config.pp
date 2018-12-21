@@ -19,6 +19,14 @@ class caddy::config inherits caddy {
     managehome => true,
   }
 
+  file {$::caddy::caddy_ssl_dir:
+    ensure  => directory,
+    owner   => $caddy::caddy_user,
+    group   => $caddy::caddy_group,
+    mode    => '0755',
+    require => User[$caddy::caddy_user],
+  }
+
   file {$::caddy::caddy_log_dir:
     ensure  => directory,
     owner   => $caddy::caddy_user,
