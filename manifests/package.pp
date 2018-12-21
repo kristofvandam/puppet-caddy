@@ -12,9 +12,13 @@ class caddy::package inherits caddy {
   $caddy_url    = 'https://caddyserver.com/download/linux'
   $caddy_dl_url = "${caddy_url}/${caddy::params::arch}?plugins=${caddy::caddy_features}&license=${caddy::caddy_license}&telemetry=${caddy::caddy_telemetry}"
   $caddy_dl_dir = "${caddy::params::caddy_tmp_dir}/caddy_linux_${$caddy::params::arch}_custom.tar.gz"
+  $caddy_dl_command = $caddy_license ? {
+    'personal'   => "curl -o ${caddy_dl_dir} \"${caddy_dl_url}\"",
+    'commercial' => "curl -o ${caddy_dl_dir} \"${caddy_dl_url}\" --user ${caddy_account_id}:${caddy_api_key}"
+  }
 
   exec { 'install caddy':
-    command => "curl -o ${caddy_dl_dir} \"${caddy_dl_url}\"",
+    command => $caddy_dl_command,
     creates => "${caddy::install_path}/caddy",
   }
 
