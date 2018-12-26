@@ -35,12 +35,6 @@ class caddy::config inherits caddy {
     require => User[$caddy::caddy_user],
   }
 
-  exec {'systemctl-daemon-reload':
-    refreshonly => true,
-    path        => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
-    command     => 'systemctl daemon-reload',
-  }
-
   file {'/etc/caddy':
     ensure => directory,
     mode   => '0755',
@@ -78,6 +72,12 @@ class caddy::config inherits caddy {
         notify  => Exec['systemctl-daemon-reload'],
         require => Class['caddy::package'],
       }
+
+      exec {'systemctl-daemon-reload':
+        refreshonly => true,
+        path        => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
+        command     => 'systemctl daemon-reload',
+      }
     }
     '6': {
       file {'/etc/init.d/caddy':
@@ -86,7 +86,6 @@ class caddy::config inherits caddy {
         owner   => 'root',
         group   => 'root',
         content => template('caddy/etc/init.d/caddy.erb'),
-        notify  => Exec['systemctl-daemon-reload'],
         require => Class['caddy::package'],
       }
     }
