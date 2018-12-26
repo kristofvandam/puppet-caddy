@@ -69,14 +69,8 @@ class caddy::config inherits caddy {
         owner   => 'root',
         group   => 'root',
         content => template('caddy/etc/systemd/system/caddy.service.erb'),
-        notify  => Exec['systemctl-daemon-reload'],
+        notify  => Class['systemd::systemctl::daemon_reload'],
         require => Class['caddy::package'],
-      }
-
-      exec {'systemctl-daemon-reload':
-        refreshonly => true,
-        path        => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
-        command     => 'systemctl daemon-reload',
       }
     }
     '6': {
