@@ -5,12 +5,12 @@
 
 class caddy::config inherits caddy {
 
-  group {$::caddy::caddy_group:
+  group {$caddy::caddy_group:
     ensure => present,
     system => true,
   }
 
-  user {$::caddy::caddy_user:
+  user {$caddy::caddy_user:
     ensure     => present,
     shell      => '/sbin/nologin',
     gid        => $caddy::caddy_group,
@@ -19,7 +19,7 @@ class caddy::config inherits caddy {
     managehome => true,
   }
 
-  file {$::caddy::caddy_ssl_dir:
+  file {$caddy::caddy_ssl_dir:
     ensure  => directory,
     owner   => $caddy::caddy_user,
     group   => $caddy::caddy_group,
@@ -27,7 +27,7 @@ class caddy::config inherits caddy {
     require => User[$caddy::caddy_user],
   }
 
-  file {$::caddy::caddy_log_dir:
+  file {$caddy::caddy_log_dir:
     ensure  => directory,
     owner   => $caddy::caddy_user,
     group   => $caddy::caddy_group,
@@ -61,7 +61,7 @@ class caddy::config inherits caddy {
     require => User[$caddy::caddy_user],
   }
 
-  case $::operatingsystemmajrelease {
+  case $operatingsystemmajrelease {
     '7': {
       file {'/etc/systemd/system/caddy.service':
         ensure  => file,
