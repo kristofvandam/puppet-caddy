@@ -35,6 +35,12 @@ class caddy::config inherits caddy {
     require => User[$caddy::caddy_user],
   }
 
+  exec {'systemctl-daemon-reload':
+    refreshonly => true,
+    path        => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
+    command     => 'systemctl daemon-reload',
+  }
+
   file {'/etc/caddy':
     ensure => directory,
     mode   => '0755',
