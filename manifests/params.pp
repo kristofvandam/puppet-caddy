@@ -24,8 +24,8 @@ class caddy::params {
       $caddy_ssl_dir         = "${caddy_home}/.caddy"
       $caddy_http_port       = 80
       $caddy_https_port      = 443
-      $caddy_private_devices = true,
-      $caddy_limit_processes = 64,
+      $caddy_private_devices = true
+      $caddy_limit_processes = 64
 
     }
 
