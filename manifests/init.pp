@@ -43,7 +43,7 @@ class caddy (
   Integer                        $caddy_http_port  = $caddy::params::caddy_http_port,
   Integer                        $caddy_https_port = $caddy::params::caddy_https_port,
 
-  ) inherits caddy::params {
+  )inherits caddy::params{
 
   include ::caddy::package
   include ::caddy::config
