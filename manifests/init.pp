@@ -36,12 +36,12 @@ class caddy (
   String                         $caddy_ssl_dir    = $caddy::params::caddy_ssl_dir,
   String                         $caddy_home       = $caddy::params::caddy_home,
   Enum['personal', 'commercial'] $caddy_license    = 'personal',
-  Optional[String[1]]            $caddy_account_id,
-  Optional[String[1]]            $caddy_api_key,
   Enum['on','off']               $caddy_telemetry  = 'off',
   String                         $caddy_features   = 'http.filter,http.git,http.ipfilter',
-  Port                           $caddy_http_port  = $caddy::params::caddy_http_port,
-  Port                           $caddy_https_port = $caddy::params::caddy_https_port,
+  Stdlib::Port                   $caddy_http_port  = $caddy::params::caddy_http_port,
+  Stdlib::Port                   $caddy_https_port = $caddy::params::caddy_https_port,
+  Optional[String[1]]            $caddy_account_id,
+  Optional[String[1]]            $caddy_api_key,
 
   )inherits caddy::params{
 
