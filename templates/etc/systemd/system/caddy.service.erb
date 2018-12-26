@@ -16,10 +16,10 @@ ExecStart=<%= @install_path %>/caddy -log <%= @caddy_log_dir %>/caddy.log -agree
 ExecReload=/bin/kill -USR1 $MAINPID
 
 LimitNOFILE=1048576
-LimitNPROC=512
+LimitNPROC=<%= @caddy_limit_processes %>
 
 PrivateTmp=true
-PrivateDevices=false
+PrivateDevices=<%= @caddy_private_devices %>
 ProtectHome=true
 ProtectSystem=full
 ReadWriteDirectories=<%= @caddy_home %>
